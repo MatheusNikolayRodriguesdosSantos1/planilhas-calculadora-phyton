@@ -1,0 +1,190 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMkHVVWOL3iKyeng8EZmtBp",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/MatheusNikolayRodriguesdosSantos1/planilhas-calculadora-phyton/blob/main/planilha-calculadora-phyton\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Sistema de Análise de Dados + Calculadora\n",
+        "# Autor: Matheus Nikolay\n",
+        "\n",
+        "import pandas as pd\n",
+        "\n",
+        "def carregar_planilha():\n",
+        "    print(\"\\n=== CARREGAR PLANILHA ===\")\n",
+        "    print(\"1 - Usar arquivo Excel\")\n",
+        "    print(\"2 - Usar dados de exemplo\")\n",
+        "\n",
+        "    escolha = input(\"Escolha: \")\n",
+        "\n",
+        "    if escolha == \"1\":\n",
+        "        try:\n",
+        "            arquivo = input(\"Digite o nome do arquivo (ex: Produtos.xlsx): \")\n",
+        "            planilha = pd.read_excel(arquivo)\n",
+        "\n",
+        "            print(\"\\nPlanilha carregada com sucesso!\")\n",
+        "            print(planilha.head())\n",
+        "\n",
+        "        except FileNotFoundError:\n",
+        "            print(\"❌ Arquivo não encontrado! Coloque o Excel na mesma pasta.\")\n",
+        "        except Exception as e:\n",
+        "            print(\"❌ Erro:\", e)\n",
+        "\n",
+        "    elif escolha == \"2\":\n",
+        "        print(\"\\nUsando dados de exemplo...\")\n",
+        "\n",
+        "        dados = {\n",
+        "            \"Produto\": [\"Mouse\", \"Teclado\", \"Monitor\"],\n",
+        "            \"Preço\": [50, 100, 800],\n",
+        "            \"Quantidade\": [10, 5, 2]\n",
+        "        }\n",
+        "\n",
+        "        planilha = pd.DataFrame(dados)\n",
+        "        print(planilha)\n",
+        "\n",
+        "    else:\n",
+        "        print(\"Opção inválida!\")\n",
+        "\n",
+        "def calculadora():\n",
+        "    print(\"\\n=== CALCULADORA ===\")\n",
+        "    print(\"1 - Soma\")\n",
+        "    print(\"2 - Subtração\")\n",
+        "    print(\"3 - Multiplicação\")\n",
+        "    print(\"4 - Divisão\")\n",
+        "\n",
+        "    opcao = input(\"Escolha: \")\n",
+        "\n",
+        "    num1 = float(input(\"Digite o primeiro número: \"))\n",
+        "    num2 = float(input(\"Digite o segundo número: \"))\n",
+        "\n",
+        "    if opcao == \"1\":\n",
+        "        print(\"Resultado:\", num1 + num2)\n",
+        "    elif opcao == \"2\":\n",
+        "        print(\"Resultado:\", num1 - num2)\n",
+        "    elif opcao == \"3\":\n",
+        "        print(\"Resultado:\", num1 * num2)\n",
+        "    elif opcao == \"4\":\n",
+        "        if num2 != 0:\n",
+        "            print(\"Resultado:\", num1 / num2)\n",
+        "        else:\n",
+        "            print(\"Erro: divisão por zero!\")\n",
+        "    else:\n",
+        "        print(\"Opção inválida!\")\n",
+        "\n",
+        "def dados_usuario():\n",
+        "    nome = input(\"\\nDigite seu nome: \")\n",
+        "    idade = int(input(\"Digite sua idade: \"))\n",
+        "    altura = float(input(\"Digite sua altura: \"))\n",
+        "\n",
+        "    print(f\"\\nNome: {nome}\")\n",
+        "    print(f\"Idade: {idade}\")\n",
+        "    print(f\"Altura: {altura:.2f}\")\n",
+        "\n",
+        "def menu():\n",
+        "    while True:\n",
+        "        print(\"\\n===== MENU =====\")\n",
+        "        print(\"1 - Carregar planilha\")\n",
+        "        print(\"2 - Calculadora\")\n",
+        "        print(\"3 - Dados do usuário\")\n",
+        "        print(\"0 - Sair\")\n",
+        "\n",
+        "        opcao = input(\"Escolha: \")\n",
+        "\n",
+        "        if opcao == \"1\":\n",
+        "            carregar_planilha()\n",
+        "        elif opcao == \"2\":\n",
+        "            calculadora()\n",
+        "        elif opcao == \"3\":\n",
+        "            dados_usuario()\n",
+        "        elif opcao == \"0\":\n",
+        "            print(\"Encerrando...\")\n",
+        "            break\n",
+        "        else:\n",
+        "            print(\"Opção inválida!\")\n",
+        "\n",
+        "# Executar sistema\n",
+        "menu()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 755
+        },
+        "id": "laIxEaARviiQ",
+        "outputId": "46ce0847-4210-4c4e-9c11-f4cc22d35011"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "===== MENU =====\n",
+            "1 - Carregar planilha\n",
+            "2 - Calculadora\n",
+            "3 - Dados do usuário\n",
+            "0 - Sair\n",
+            "Escolha: 1\n",
+            "\n",
+            "=== CARREGAR PLANILHA ===\n",
+            "1 - Usar arquivo Excel\n",
+            "2 - Usar dados de exemplo\n",
+            "Escolha: 1\n",
+            "Digite o nome do arquivo (ex: Produtos.xlsx): produtos.xlsx\n",
+            "\n",
+            "Planilha carregada com sucesso!\n",
+            "   Produto  Preço  Quantidade\n",
+            "0    Mouse     50          10\n",
+            "1  Teclado    100           5\n",
+            "2  Monitor    800           2\n",
+            "\n",
+            "===== MENU =====\n",
+            "1 - Carregar planilha\n",
+            "2 - Calculadora\n",
+            "3 - Dados do usuário\n",
+            "0 - Sair\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "KeyboardInterrupt",
+          "evalue": "Interrupted by user",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m                         Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_311/2533833034.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     97\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     98\u001b[0m \u001b[0;31m# Executar sistema\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 99\u001b[0;31m \u001b[0mmenu\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;32m/tmp/ipykernel_311/2533833034.py\u001b[0m in \u001b[0;36mmenu\u001b[0;34m()\u001b[0m\n\u001b[1;32m     82\u001b[0m         \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"0 - Sair\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     83\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 84\u001b[0;31m         \u001b[0mopcao\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0minput\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Escolha: \"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     85\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     86\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mopcao\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;34m\"1\"\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36mraw_input\u001b[0;34m(self, prompt)\u001b[0m\n\u001b[1;32m   1175\u001b[0m                 \u001b[0;34m\"raw_input was called, but this frontend does not support input requests.\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1176\u001b[0m             )\n\u001b[0;32m-> 1177\u001b[0;31m         return self._input_request(\n\u001b[0m\u001b[1;32m   1178\u001b[0m             \u001b[0mstr\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mprompt\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1179\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_parent_ident\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"shell\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36m_input_request\u001b[0;34m(self, prompt, ident, parent, password)\u001b[0m\n\u001b[1;32m   1217\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1218\u001b[0m                 \u001b[0;31m# re-raise KeyboardInterrupt, to truncate traceback\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1219\u001b[0;31m                 \u001b[0;32mraise\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Interrupted by user\"\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1220\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mException\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1221\u001b[0m                 \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mlog\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwarning\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Invalid Message:\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mexc_info\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mTrue\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m: Interrupted by user"
+          ]
+        }
+      ]
+    }
+  ]
+}
